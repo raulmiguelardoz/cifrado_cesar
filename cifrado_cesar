@@ -1,0 +1,35 @@
+#debemos introducir todo en mayusculas y sin signos de puntuacion, separados por espacios
+
+import string
+
+def traductor_palabra(palabra,llave=10):
+    alfabeto=list(string.ascii_uppercase)
+    traduccion=[]
+    for i in palabra:
+        i=alfabeto[(alfabeto.index(i)+llave)%len(alfabeto)]
+        traduccion.append(i)
+    traduccion="".join(traduccion)
+    return traduccion
+
+sentencia=input("Inserte frase: ")
+llave=int(input("Inserte llave: "))
+
+     
+traduccion_final=[]
+sentencia_splitted=sentencia.split(" ")
+for i in sentencia_splitted:
+    traduccion_final.append(traductor_palabra(i,llave))
+traduccion_final=" ".join(traduccion_final)    
+print("\nTraduccion => {}".format(traduccion_final))
+
+
+#pruebas:
+
+HOLA COMO ESTAS, 23
+R/ Traduccion => ELIX ZLJL BPQXP
+
+SUPERSENTENCIA, 10
+R/ Traduccion => CEZOBCOXDOXMSK
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+R/ Traduccion => XYZABCDEFGHIJKLMNOPQRSTUVW
